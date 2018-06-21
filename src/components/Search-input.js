@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import _ from 'lodash'
 export default class SearchInput extends Component {
 	constructor(){
 		super()
@@ -7,11 +7,15 @@ export default class SearchInput extends Component {
 			term:''
 		}
 	}
-	onSearch(term){
+
+	debouncedSearch = _.debounce(()=>this.onClick(this.state.term),500);
+
+	onSearch = (term) =>{
 		this.setState({term})
+		this.debouncedSearch();
 	}
 	onClick(term){
-	this.props.onSearch(term)
+		this.props.onSearch(term)
 	}
 	render(){
 		return (
