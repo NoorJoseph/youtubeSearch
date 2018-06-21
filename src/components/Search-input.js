@@ -9,12 +9,15 @@ export default class SearchInput extends Component {
 	}
 	onSearch(term){
 		this.setState({term})
-		this.props.onSearch(term)
+	}
+	onClick(term){
+	this.props.onSearch(term)
 	}
 	render(){
 		return (
-			<div>
+			<div className="search-bar">
 				<input onChange={e => this.onSearch(e.target.value)}/>
+				<button onClick = {()=>this.onClick(this.state.term)} >Search</button> 
 			</div>
 			)
 	}
